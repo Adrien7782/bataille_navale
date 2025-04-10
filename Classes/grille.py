@@ -1,19 +1,21 @@
 #classe grille pour les deux joueurs 
+import sys
+import os
 import numpy as np
+# Ajouter le dossier parent au path d'importation
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from constantes import *
 from ship import ship
 
 class grille():
 
-    def __init__ (self, X = XGrille, Y = YGrille, joueur = 1, color = "blue"):
+    def __init__ (self, X = XGrille, Y = YGrille, color = "blue"):
         self.X = X
         self.Y = Y
         self.color = color
-        self.grille = np.zeros((self.Y, self.X), dtype=int)
-        self.joueur = joueur
+        self.grille = np.zeros((YGrille, XGrille), dtype = int)
 
     def afficher(self):
-        print(f'\nGrille du Joueur {self.joueur} :\n')
         print(self.grille)
         print("\n")
 
@@ -26,6 +28,7 @@ class grille():
     def place_ship(self, ship, X, Y, orientation):
         if X <= 0 or X > XGrille or Y <= 0 or Y > YGrille:
             print("Vous devez rentrer des coordonnees valides !")
+            
             return False
 
         # Décalage pour l'indexation à partir de 0
@@ -63,17 +66,44 @@ class grille():
         for x, y in coords:
             self.grille[y][x] = ship.val
 
+        self.afficher()
         return True
         
     def reinitialiser_grille(self):
         self.grille = np.zeros((self.Y, self.X), dtype = int)
 
-            
+    def tirer(self, X, Y):
+        X, Y = X-1, Y-1
+        if self.grille[Y][X] == 0:
+            print("RAS !\n")
+            self.grille[Y][X] = 11
+            return False, 0
+        if self.grille[Y][X] == 11:
+            print ("Vous avez déja tiré ici !\n")
+            return False, 11
+        else:
+            val = self.grille[Y][X]
+            self.grille[Y][X] = 11
+            print ("Touché !")
+            return True, val
+
+    def check_ship(self, val):
+
+        for i in range (XGrille):
+            for j in range (YGrille):
+                if self.grille[j][i] == val:
+                    return True
+        print("Coulé !")
+        return False
 
 
-        
-
-
-
-
-
+# myShip = ship(2, "red", 1)
+# magrille = grille(color = "red")
+# magrille.afficher()
+# magrille.place_ship(myShip, 1,1, "S")
+# magrille.afficher()
+# magrille.tirer(1,1)
+# magrille.afficher()
+# magrille.check_ship(myShip)
+# magrille.tirer(1,2)
+# magrille.check_ship(myShip)

@@ -1,16 +1,23 @@
-from grille import *
+from Classes.grille import *
+from Classes.joueur import joueur
+from utils import *
 
 #Point d'entrée du jeu 
 
 def main():
-    bateau1 = ship(5,val = 2)
-    bateau2 = ship(3)
 
-    magrille = grille(9,7)
+    joueur1 = joueur("Adrien")
+    joueur2 = joueur("Victor")
 
-    magrille.place_ship(bateau1, 3,3,"S")
-    magrille.afficher()
-    magrille.place_ship(bateau2, 4,4, "E")
-    magrille.afficher()
+    joueur1.initialisation_grille(joueur1, "blue")
+
+    joueur2.initialisation_grille(joueur2, "red")
+
+    Fin_partie = False
+
+  
+    tour(joueur1)
+
+        
 
 main()
