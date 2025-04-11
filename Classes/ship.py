@@ -6,6 +6,3 @@ class ship():
         self.color = color
         self.val = val
 
-    def afficher():
-        print("bateau appartenant au joueur {joueur} de couleur {color} et de taille {taille}")
-

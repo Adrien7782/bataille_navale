@@ -21,7 +21,7 @@ class grille():
 
     def check_coordinates(self, X, Y):
         if X < 0 or X >= self.X or Y < 0 or Y >= self.Y:
-            print("Vous ne pouvez pas placer votre bateau ici, il depasse de la grille !")
+            print("Coordonnées impossibles")
             return False
         return True
         
@@ -93,7 +93,7 @@ class grille():
             for j in range (YGrille):
                 if self.grille[j][i] == val:
                     return True
-        print("Coulé !")
+        print(f"Vous avez coulé le bateau : {val}")
         return False
 
 

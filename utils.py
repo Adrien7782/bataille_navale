@@ -19,19 +19,24 @@ def tour(joueur):
 
     print(f"Quels sont vos ordres {joueur.nom} !\n")
 
-    T = True
-    while (T):
+    T = False
+    while (not T):
         try:
             X = int(input("Où voulez-vous tirer ? (X)"))
             Y = int(input("Où voulez-vous tirer ? (Y)"))
         except X == None and Y == None :
             print("Vous devez entrer des coordonnées valides !")
 
-        touche, val = grille.tirer(X,Y)
-        if touche == True: 
-            joueur.grille.check_ship(val)
+        if (joueur.grille.check_coordinates(X, Y)): T = True
+    
 
-        
+    touche, val = joueur.grille.tirer(X,Y)
+    
+    if touche == True: 
+        joueur.grille.check_ship(val)
+            
+
+    
 
 
 
