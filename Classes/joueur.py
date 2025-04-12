@@ -6,8 +6,8 @@ import numpy as np
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from constantes import *
-from Classes.ship import ship
-from grille import grille
+from Classes.ship import *
+from Classes.grille import *
 
 class joueur():
 
@@ -27,15 +27,15 @@ class joueur():
 
     #     print(message) #temporaire utile pour le jeu en réseau local
 
-    def initialisation_grille(self, myColor):
+    def initialisation_grille(self):
 
         myGrille = self.grille
 
-        ship1 = ship(2, color = myColor, val = 1)
-        ship2 = ship(3, color = myColor, val = 2)
-        ship3 = ship(3, color = myColor, val = 3)
-        ship4 = ship(4, color = myColor, val = 4)
-        ship5 = ship(5, color = myColor, val = 5)
+        ship1 = ship(2, color = self.color, val = 1)
+        ship2 = ship(3, color = self.color, val = 2)
+        ship3 = ship(3, color = self.color, val = 3)
+        ship4 = ship(4, color = self.color, val = 4)
+        ship5 = ship(5, color = self.color, val = 5)
 
         ships = {ship1 :False, ship2: False, ship3: False, ship4: False, ship5: False}
         print(f"{self.nom} il vous reste a placer :\n")

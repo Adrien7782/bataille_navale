@@ -5,7 +5,7 @@ import numpy as np
 # Ajouter le dossier parent au path d'importation
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from constantes import *
-from ship import ship
+from Classes.ship import *
 
 class grille():
 
